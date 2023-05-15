@@ -6,5 +6,3 @@ const items = [1, [2, [3, [4]]]];
 // Flattens array
 const newItems = _.flattenDeep(items);
 console.log(newItems);
-
-// Timestamp: 2:03:00
