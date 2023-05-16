@@ -1,7 +1,10 @@
-// Started operating system process
-console.log("first");
-setTimeout(() => {
-  console.log("second");
-}, 0);
-console.log("third");
-// completed and exited operating system process
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+  console.log("request event");
+  res.end("Hello World");
+});
+
+server.listen(5000, () => {
+  console.log("Server listening on port : 5000");
+});
