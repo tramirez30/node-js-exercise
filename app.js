@@ -1,21 +1,29 @@
-const http = require("http");
+const { readFile } = require("fs");
 
-const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    res.end("Home Page");
-  }
-  if (req.url === "/about") {
-    // BLOCKING CODE!!
-    for (let i = 0; i < 1000; i++) {
-      for (let j = 0; j < 1000; j++) {
-        console.log(`${i} ${j}`);
+const getText = (path) => {
+  return new Promise((resolve, reject) => {
+    readFile(path, "utf8", (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
       }
-    }
-    res.end("About Page");
-  }
-  res.end("Error Page");
-});
+    });
+  });
+};
 
-server.listen(5000, () => {
-  console.log("Server is listening on port 5000...");
-});
+getText("./content/first.txt")
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));
+
+// Before without promise - this method become messy with callback hell
+// readFile("./content/first.txt", "utf8", (err, data) => {
+//   if (err) {
+//     return;
+//   } else {
+//     console.log(data);
+//   }
+// });
+
+// Solution to creating more readFile or writeFile methods
+// Using Promise to clean up the code vs callback hell!
