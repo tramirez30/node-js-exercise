@@ -12,18 +12,18 @@ const getText = (path) => {
   });
 };
 
-getText("./content/first.txt")
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err));
+const start = async () => {
+  try {
+    const first = await getText("./content/first.txt");
+    const second = await getText("./content/second.txt");
+    console.log("Await Resolved:", first, second);
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
 
-// Before without promise - this method become messy with callback hell
-// readFile("./content/first.txt", "utf8", (err, data) => {
-//   if (err) {
-//     return;
-//   } else {
-//     console.log(data);
-//   }
-// });
+start();
 
-// Solution to creating more readFile or writeFile methods
-// Using Promise to clean up the code vs callback hell!
+// getText("./content/first.txt")
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err));
