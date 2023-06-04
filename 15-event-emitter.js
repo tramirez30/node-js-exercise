@@ -3,7 +3,7 @@
 
 const EventEmitter = require("events");
 
-// getting back the class, variable is the class
+// The variable is the class
 // If you want to create something custom you need to extend the Class
 
 // Listen to event
@@ -14,7 +14,7 @@ const customEmitter = new EventEmitter();
 // emit - emit an event
 
 // We can have multiple methods, order matters -- on() comes before emit()
-// 'response' is the name of the callback function
+// 'response' is the name of the event
 
 customEmitter.on("response", (name, id) => {
   console.log(`data received user ${name} with id: ${id}`);
